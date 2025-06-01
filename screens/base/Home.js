@@ -4,11 +4,13 @@ import { Avatar1 } from '../../assets/image'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import BottomScreeenNavigation from "../partials/BottomScreeenNavigation";
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const Home = () => {
   const [trendingCourses, setTrendingCourses] = useState([1,2,3,4,5])
+  const navigation = useNavigation();
 
   return (
     <View className="flex-1 px-3 bg-white">
@@ -124,7 +126,7 @@ const Home = () => {
                    <View className="flex-row items-center justify-between ">
                       <Text className=" text-[22px] font-bold mt-3">50</Text>
                       <View className="flex-row items-center gap-2">
-                          <TouchableOpacity className=" bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
+                          <TouchableOpacity onPress={()=>navigation.navigate("CourseDetail",{course_slug:index} )} className=" bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
                             <Text className="text-white ">View Courses </Text>
                           </TouchableOpacity>
                            <TouchableOpacity className="bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
