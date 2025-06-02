@@ -5,23 +5,47 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // Screens
 import Home from "./screens/base/Home";
 import CourseDetail from "./screens/base/CourseDetail";
+import Cart from "./screens/base/Cart";
+import Checkout from "./screens/base/Checkout";
+import Success from "./screens/base/Success";
 
 import GlobalStyle from "./src/style/GlobalStyle";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-return (
-<SafeAreaView style={GlobalStyle.droidSafeArea}>
-    <TailwindProvider>
+  return (
+    <SafeAreaView style={GlobalStyle.droidSafeArea}>
+      <TailwindProvider>
         <NavigationContainer>
-           <Stack.Navigator>
-              <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
-              <Stack.Screen name="CourseDetail" component={CourseDetail} options={{headerShown:false}}/>
-
-            </Stack.Navigator>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="CourseDetail"
+              component={CourseDetail}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Cart"
+              component={Cart}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Checkout"
+              component={Checkout}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Success"
+              component={Success}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
         </NavigationContainer>
-    </TailwindProvider>
-</SafeAreaView>
-
-);
+      </TailwindProvider>
+    </SafeAreaView>
+  );
 }

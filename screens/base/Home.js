@@ -26,7 +26,7 @@ const Home = () => {
                  </View>
                    <View>
                    <View className="flex-row items-center gap-2">
-                     <TouchableOpacity className="h-[30px] w-[30px] bg-white rounded-full flex items-center justify-center">
+                     <TouchableOpacity onPress={()=>navigation.navigate("Cart")} className="h-[30px] w-[30px] bg-white rounded-full flex items-center justify-center">
                         <FontAwesome5 name="shopping-cart" size={20} color={"#280e49"} />
                      </TouchableOpacity>
                      <TouchableOpacity className="h-[30px] w-[30px] bg-white rounded-full flex items-center justify-center">
@@ -76,7 +76,7 @@ const Home = () => {
                       <Text> 2 Reviews</Text>
                    </View>
                    <View className="flex-row items-center justify-between ">
-                      <Text className=" text-[22px] font-bold mt-3">50</Text>
+                      <Text className=" text-[22px] font-bold mt-3">50 ETB</Text>
                       <View className="flex-row items-center gap-2">
                           <TouchableOpacity className=" bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
                             <Text className="text-white ">View Courses </Text>
@@ -124,7 +124,7 @@ const Home = () => {
                       <Text> 2 Reviews</Text>
                    </View>
                    <View className="flex-row items-center justify-between ">
-                      <Text className=" text-[22px] font-bold mt-3">50</Text>
+                      <Text className=" text-[22px] font-bold mt-3">50 ETB</Text>
                       <View className="flex-row items-center gap-2">
                           <TouchableOpacity onPress={()=>navigation.navigate("CourseDetail",{course_slug:index} )} className=" bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
                             <Text className="text-white ">View Courses </Text>

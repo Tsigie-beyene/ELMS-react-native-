@@ -12,6 +12,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import BottomScreeenNavigation from "../partials/BottomScreeenNavigation";
 import { List } from "react-native-paper";
+import ScreenHeader from "../partials/ScreenHeader";
 
 const CourseDatail = ({ route }) => {
   const { course_slug } = route.params; // Get the courseId from route params
@@ -25,22 +26,7 @@ const CourseDatail = ({ route }) => {
         showsVerticalScrollIndicator={false}
         className="flex-1"
       >
-        <View className="bg-[#280e49] p-2 rounded-[8px] mb-3">
-          <View className="flex-row items-center justify-between gap-5">
-            <TouchableOpacity className=" h-[30px] w-[30px] flex items-center justify-center bg-white rounded-full">
-              <FontAwesome5 name="arrow-left" size={20} color={"#280e49"} />
-            </TouchableOpacity>
-            <View>
-              <Text className="text-white text-[17px] font-semibold text-center">
-                Course Detail
-              </Text>
-            </View>
-            <TouchableOpacity className=" h-[30px] w-[30px] flex items-center justify-center bg-white rounded-full">
-              <FontAwesome5 name="shopping-cart" size={20} color={"#280e49"} />
-            </TouchableOpacity>
-          </View>
-        </View>
-
+         <ScreenHeader title={"Course Detail"} returnScreen={"Home"}/>
         {/* section 2 */}
         <View className="w-full p-2 pb-3 rounded-md">
           <Image
