@@ -8,6 +8,8 @@ import CourseDetail from "./screens/base/CourseDetail";
 import Cart from "./screens/base/Cart";
 import Checkout from "./screens/base/Checkout";
 import Success from "./screens/base/Success";
+import Login from "./screens/auth/Login";
+import Register from "./screens/auth/Register";
 
 import GlobalStyle from "./src/style/GlobalStyle";
 const Stack = createNativeStackNavigator();
@@ -41,6 +43,17 @@ export default function App() {
             <Stack.Screen
               name="Success"
               component={Success}
+              options={{ headerShown: false }}
+            />
+            {/* Auth Screen */}
+             <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

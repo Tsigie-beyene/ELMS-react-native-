@@ -32,7 +32,7 @@ const Home = () => {
                      <TouchableOpacity className="h-[30px] w-[30px] bg-white rounded-full flex items-center justify-center">
                         <FontAwesome5 name="bell" size={20} color={"#280e49"} />
                      </TouchableOpacity>
-                     <TouchableOpacity className="h-[30px] w-[30px] bg-[#fe3535] rounded-full flex items-center justify-center">
+                     <TouchableOpacity onPress={()=>navigation.navigate("Login")} className="h-[30px] w-[30px] bg-[#fe3535] rounded-full flex items-center justify-center">
                         <FontAwesome5 name="power-off" size={20} color={"#fff"} />
                      </TouchableOpacity>
 
