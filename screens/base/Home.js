@@ -1,6 +1,7 @@
 import { View, Text ,Image,TouchableOpacity,TextInput,ScrollView} from 'react-native'
 import { useState } from 'react';
 import { Avatar1 } from '../../assets/image'
+import { Tsigie } from '../../assets/image';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import BottomScreeenNavigation from "../partials/BottomScreeenNavigation";
@@ -18,7 +19,7 @@ const Home = () => {
             <View className="bg-[#280e49] p-2 rounded-[8px] mb-3">
                <View className="flex-row items-center justify-between">
                  <View className="flex-row items-center gap-2">
-                  <Image source={Avatar1} className= "h-[40px] w-[40px] rounded-full"/>
+                  <Image source={Tsigie} className= "h-[40px] w-[40px] rounded-full"/>
                     <View>
                       <Text className= "text-[15px] font-normal text-white ">Hello 👋</Text>
                       <Text className= " text-[17px] font-semibold text-white ">Tsigie Beyene</Text>
