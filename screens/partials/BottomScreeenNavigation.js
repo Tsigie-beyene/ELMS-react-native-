@@ -3,6 +3,8 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 // import { useNavigation } from "@react-navigation/native";
 
 const BottomScreeenNavigation = () => {
+    // const navigation = useNavigation();
+    
     return (
         <View className="bg-[#e5e2ea] h-[60px] rounded-md fixed bottom-0 left-0 right-0 mt-2">
             <View className="flex-row items-center justify-between gap-[6px]">

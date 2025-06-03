@@ -12,6 +12,13 @@ import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 
 import GlobalStyle from "./src/style/GlobalStyle";
+import Dashboard from "./screens/student/Dashboard";
+import Message from "./screens/student/Message";
+import MyCourses from "./screens/student/MyCourses";
+import Note from "./screens/student/Note";
+import Settings from "./screens/student/Settings";
+import StudentCourseDetail from "./screens/student/StudentCourseDetail";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -56,6 +63,37 @@ export default function App() {
               component={Register}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="Dashboard"
+              component={Dashboard}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Message"
+              component={Message}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="MyCourses"
+              component={MyCourses}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Note"
+              component={Note}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Settings"
+              component={Settings}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="StudentCourseDetail"
+              component={StudentCourseDetail}
+              options={{ headerShown: false }}
+            />
+            
           </Stack.Navigator>
         </NavigationContainer>
       </TailwindProvider>
