@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from environs import Env
 import os
 env = Env()
 env.read_env()
-import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +33,7 @@ SECRET_KEY = 'django-insecure-v3=6tihy3#&yn$-k_%s520(&sthuojbpxo=0#+l2y1jwzzj-s5
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://caa0-102-218-50-251.ngrok-free.app"]
 
 
 # Application definition
@@ -159,11 +160,10 @@ if USE_S3 == True:
     AWS_LOCATION = 'static'
     STATIC_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-else: 
-    
+else:
 
     STATIC_URL = 'static/'
-    STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'django/contrib/admin/') ]
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'django/contrib/admin/')]
     STATIC_ROOT = BASE_DIR / 'staticfiles'
 
     MEDIA_URL = 'media/'
@@ -209,9 +209,6 @@ SITE_URL = env("SITE_URL")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=50),
@@ -245,16 +242,14 @@ SIMPLE_JWT = {
 }
 
 
-
-
 JAZZMIN_SETTINGS = {
-    'site_title':"Desphixs",
-    'site_header':"Desphixs",
-    'site_brand':"Desphixs",
-    'welcome_sign':"Welcome to Desphixs",
-    'copyright':"Desphixs 2024 Alright Reserved",
-    'show_sidebar':True,
-    'show_ui_builder':True,
+    'site_title': "Desphixs",
+    'site_header': "Desphixs",
+    'site_brand': "Desphixs",
+    'welcome_sign': "Welcome to Desphixs",
+    'copyright': "Desphixs 2024 Alright Reserved",
+    'show_sidebar': True,
+    'show_ui_builder': True,
 
     "order_with_respect_to": [
         "api",
@@ -464,7 +459,8 @@ CKEDITOR_5_CONFIGS = {
         },
         "htmlSupport": {
             "allow": [
-                {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
+                {"name": "/.*/", "attributes": True,
+                    "classes": True, "styles": True}
             ]
         },
     },

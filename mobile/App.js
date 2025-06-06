@@ -2,6 +2,7 @@ import { SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import store from "./src/store/store"
 // Screens
 import Home from "./screens/base/Home";
 import CourseDetail from "./screens/base/CourseDetail";
@@ -18,6 +19,7 @@ import MyCourses from "./screens/student/MyCourses";
 import Note from "./screens/student/Note";
 import Settings from "./screens/student/Settings";
 import StudentCourseDetail from "./screens/student/StudentCourseDetail";
+import { Provider } from "react-redux";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,8 +27,21 @@ export default function App() {
   return (
     <SafeAreaView style={GlobalStyle.droidSafeArea}>
       <TailwindProvider>
+        <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
+             {/* Auth Screen */}
+             <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+             <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            
             <Stack.Screen
               name="Home"
               component={Home}
@@ -52,17 +67,7 @@ export default function App() {
               component={Success}
               options={{ headerShown: false }}
             />
-            {/* Auth Screen */}
-             <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Register"
-              component={Register}
-              options={{ headerShown: false }}
-            />
+           
             <Stack.Screen
               name="Dashboard"
               component={Dashboard}
@@ -96,6 +101,7 @@ export default function App() {
             
           </Stack.Navigator>
         </NavigationContainer>
+         </Provider>
       </TailwindProvider>
     </SafeAreaView>
   );
