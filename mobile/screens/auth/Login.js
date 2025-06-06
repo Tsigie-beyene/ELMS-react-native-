@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   Text,
@@ -8,9 +9,48 @@ import {
 } from "react-native";
 import { Login3dImage } from "../../assets/image";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { login } from "../../src/utils/auth";
+import CartId from "../../src/plugin/CartId";
+
+
 
 const Login = () => {
     const navigation = useNavigation();
+
+    const dispatch = useDispatch();
+
+    const [bioData, setBioData] = useState({ email: "tsigiebey29@gmail.com", password: "Kidanu@16" });
+    const [loading, setLoading] = useState(false);
+
+    const handleBioData = (name, value) => {
+        setBioData({
+            ...bioData,
+            [name]: value,
+        });
+    };
+
+     const handleLogin = async () => {
+        setLoading(true);
+
+        try {
+            const { error } = await login(dispatch, bioData.email, bioData.password);
+            if (error) {
+                alert(error.detail);
+                setLoading(false);
+            } else {
+                console.log("Login Succes");
+                setLoading(false);
+                navigation.navigate("Home");
+                CartId();
+                generateCartId();
+            }
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    };
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -25,11 +65,13 @@ const Login = () => {
 
       <View className="mt-3">
         <TextInput
+          onChangeText={(text) => handleBioData("email", text)} value={bioData.email}
           placeholder="Email"
           keyboardType="default"
           className="bg-[#e9e9e9a7] border-[#e8e8e8d2] rounded-md mb-2 p-2"
         />
         <TextInput
+          onChangeText={(text) => handleBioData("password", text)} value={bioData.password}
           placeholder="Password"
           keyboardType="default"
           secureTextEntry={true}
@@ -40,11 +82,19 @@ const Login = () => {
                             <Text className="text-white">Processing</Text>
                         </TouchableOpacity> */}
 
-        <TouchableOpacity
-          className="bg-[#280e49] flex-row justify-center p-2 rounded-md mt-2"
-        >
-          <Text className="text-white">Login</Text>
-        </TouchableOpacity>
+        {loading === true ? (
+                    <>
+                        <TouchableOpacity disabled className="bg-[#280e4991] flex-row justify-center p-2 rounded-md mt-2">
+                            <Text className="text-white">Processing</Text>
+                        </TouchableOpacity>
+                    </>
+                ) : (
+                    <>
+                        <TouchableOpacity onPress={handleLogin} className="bg-[#280e49] flex-row justify-center p-2 rounded-md mt-2">
+                            <Text className="text-white">Login</Text>
+                        </TouchableOpacity>
+                    </>
+                )}
 
         <TouchableOpacity
           onPress={() => navigation.navigate("Register")}

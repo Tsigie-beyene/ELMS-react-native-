@@ -38,15 +38,16 @@ const Register = () => {
             };
 
             const response = await apiInstance.post(`user/register/`, userData);
+            navigation.navigate("Login");
 
-            if (response.status === 201) {
-                const { error } = await login(dispatch, bioData.email, bioData.password);
-                if (error) {
-                } else {
-                    navigation.navigate("Home");
-                    generateCartId();
-                }    
-            }
+            // if (response.status === 201) {
+            //     const { error } = await login(dispatch, bioData.email, bioData.password);
+            //     if (error) {
+            //     } else {
+            //         navigation.navigate("Home");
+            //         generateCartId();
+            //     }    
+            // }
         } catch (error) {
             console.log(error);
             setLoading(false);

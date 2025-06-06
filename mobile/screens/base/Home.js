@@ -1,4 +1,4 @@
-import { View, Text ,Image,TouchableOpacity,TextInput,ScrollView} from 'react-native'
+import { View, Text ,Image,TouchableOpacity,TextInput,ScrollView,Alert} from 'react-native'
 import { useState } from 'react';
 import { Avatar1 } from '../../assets/image'
 import { Tsigie } from '../../assets/image';
@@ -6,12 +6,37 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import BottomScreeenNavigation from "../partials/BottomScreeenNavigation";
 import { useNavigation } from '@react-navigation/native';
-
-
+import {logout}  from "../../src/utils/auth"
+import  {useDispatch} from "react-redux"
 
 const Home = () => {
   const [trendingCourses, setTrendingCourses] = useState([1,2,3,4,5])
   const navigation = useNavigation();
+  const dispatch= useDispatch();
+
+  const logoutUser= async()=> {
+   logout(dispatch);
+   navigation.navigate("Login")
+}
+ const handleLogout = () => {
+    Alert.alert(
+      'Logout',
+      'Are you sure you want to logout?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Logout',
+          onPress: logoutUser,
+          style: 'destructive',
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
 
   return (
     <View className="flex-1 px-3 bg-white">
@@ -33,7 +58,7 @@ const Home = () => {
                      <TouchableOpacity className="h-[30px] w-[30px] bg-white rounded-full flex items-center justify-center">
                         <FontAwesome5 name="bell" size={20} color={"#280e49"} />
                      </TouchableOpacity>
-                     <TouchableOpacity onPress={()=>navigation.navigate("Login")} className="h-[30px] w-[30px] bg-[#fe3535] rounded-full flex items-center justify-center">
+                     <TouchableOpacity onPress={handleLogout} className="h-[30px] w-[30px] bg-[#fe3535] rounded-full flex items-center justify-center">
                         <FontAwesome5 name="power-off" size={20} color={"#fff"} />
                      </TouchableOpacity>
 
