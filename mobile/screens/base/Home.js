@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { useState, useEffect } from "react";
 import { Avatar1 } from "../../assets/image";
@@ -135,137 +136,167 @@ const Home = () => {
           </View>
 
           <ScrollView horizontal showsVerticalScrollIndicator={false}>
-            {trendingCourses?.map((t, index) => (
-              <View
-                className="bg-white w-[300px] p-3 mr-2 rounded-md"
-                key={index}
-              >
-                <Image
-                  source={{ uri: t.image }}
-                  className="h-[200px] w-full rounded-md object-cover"
-                />
-                <View>
-                  <Text className="text-[20px] text-[#280e49] font-semibold mt-2">
-                    {t.title}
-                  </Text>
-                  <Text className="text-[15px] text-[#280e49] font-normal mt-1">
-                    Tsigie Beyene
-                  </Text>
-                  <View className="flex-row items-center gap-1 mt-1">
-                    <Text>{t?.average_rating}/5.0</Text>
-                    <View className="flex-row items-center gap-1 mt-1">
-                      <Text>
-                        {t?.average_rating === 1 ? (
-                          <AntDesign name="star" color={"#dba100"} size={15} />
-                        ) : t?.average_rating === 2 ? (
-                          <>
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                          </>
-                        ) : t?.average_rating === 3 ? (
-                          <>
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                          </>
-                        ) : t?.average_rating === 4 ? (
-                          <>
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                          </>
-                        ) : t?.average_rating === 5 ? (
-                          <>
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                            <AntDesign
-                              name="star"
-                              color={"#dba100"}
-                              size={15}
-                            />
-                          </>
-                        ) : (
-                          <Text>Rating Not Added</Text>
-                        )}
+            {loading === false ? (
+              <>
+                {trendingCourses?.map((t, index) => (
+                  <View
+                    className="bg-white w-[300px] p-3 mr-2 rounded-md"
+                    key={index}
+                  >
+                    <Image
+                      source={{ uri: t.image }}
+                      className="h-[200px] w-full rounded-md object-cover"
+                    />
+                    <View>
+                      <Text className="text-[20px] text-[#280e49] font-semibold mt-2">
+                        {t.title}
                       </Text>
+                      <Text className="text-[15px] text-[#280e49] font-normal mt-1">
+                        {t.teacher?.full_name}
+                      </Text>
+                      <View className="flex-row items-center gap-1 mt-1">
+                        <Text>{t?.average_rating || 0}/5</Text>
+                        <View className="flex-row items-center gap-1 mt-1">
+                          <Text>
+                            {t?.average_rating === 1 ? (
+                              <AntDesign
+                                name="star"
+                                color={"#dba100"}
+                                size={15}
+                              />
+                            ) : t?.average_rating === 2 ? (
+                              <>
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                              </>
+                            ) : t?.average_rating === 3 ? (
+                              <>
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                              </>
+                            ) : t?.average_rating === 4 ? (
+                              <>
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                              </>
+                            ) : t?.average_rating === 5 ? (
+                              <>
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                                <AntDesign
+                                  name="star"
+                                  color={"#dba100"}
+                                  size={15}
+                                />
+                              </>
+                            ) : (
+                              <Text>Rating Not Added</Text>
+                            )}
+                          </Text>
+                        </View>
+                        <Text>{t?.rating_count} Reviews</Text>
+                      </View>
+                      <View className="flex-row items-center justify-between">
+                        <Text className="text-[22px] font-bold mt-3">
+                          {t?.price} ETB
+                        </Text>
+                        <View className="flex-row items-center gap-2">
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate("CourseDetail", {
+                                course_slug: t?.slug,
+                              })
+                            }
+                            className="bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2"
+                          >
+                            <Text className="text-white">View Course</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity
+                            onPress={() =>
+                              addToCart(
+                                t?.id,
+                                user_id,
+                                t?.price,
+                                "Nigeria",
+                                cartId
+                              )
+                            }
+                            className="bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2"
+                          >
+                            <FontAwesome5
+                              name="shopping-cart"
+                              color={"#fff"}
+                              size={15}
+                            />
+                          </TouchableOpacity>
+                        </View>
+                      </View>
                     </View>
-                    <Text>{t?.rating_count} Reviews</Text>
                   </View>
-                  <View className="flex-row items-center justify-between ">
-                    <Text className=" text-[22px] font-bold mt-3">
-                      {t?.price} ETB
-                    </Text>
-                    <View className="flex-row items-center gap-2">
-                      <TouchableOpacity className=" bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
-                        <Text className="text-white ">View Courses </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity className="bg-[#280e49] rounded-md w-30 flex items-center justify-center p-2">
-                        <FontAwesome5
-                          name="shopping-cart"
-                          size={15}
-                          color={"#fff"}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            ))}
+                ))}
+              </>
+            ) : (
+              <>
+                <ActivityIndicator size={"small"} color={"#280e49"} />
+              </>
+            )}
           </ScrollView>
         </View>
 
