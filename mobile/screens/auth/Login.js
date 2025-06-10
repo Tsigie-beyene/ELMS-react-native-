@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { login } from "../../src/utils/auth";
 import CartId from "../../src/plugin/CartId";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -31,6 +32,26 @@ const Login = () => {
     });
   };
 
+  const generateCartId = async () => {
+    const generateRandomString = async () => {
+      const length = 30;
+      const characters = "abcdefghiklmnopqrstuvwxzy1234567890";
+      let randomString = "";
+
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomString += characters.charAt(randomIndex);
+      }
+      await AsyncStorage.setItem("randomString", randomString);
+    };
+
+    const existingRandomString = await AsyncStorage.getItem("randomString");
+    console.log("existingRandomString =====", existingRandomString);
+    if (!existingRandomString) {
+      generateRandomString();
+    }
+  };
+
   const handleLogin = async () => {
     setLoading(true);
 
@@ -44,7 +65,7 @@ const Login = () => {
         setLoading(false);
         navigation.navigate("Home");
         CartId();
-        // generateCartId();
+        generateCartId();
       }
     } catch (error) {
       console.log(error);
