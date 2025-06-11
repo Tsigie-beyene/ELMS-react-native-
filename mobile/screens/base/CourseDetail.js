@@ -72,7 +72,7 @@ const CourseDetail = ({ route }) => {
     try {
       json = {
         course_id: courseId,
-        user: userId,
+        user: userId,  
         price: price,
         country: country,
         cart_id: cartId,

@@ -18,6 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 import { logout } from "../../src/utils/auth";
 import { useDispatch } from "react-redux";
 import apiInstance from "../../src/utils/axios";
+import useUserData from "../../src/plugin/useUserData";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
@@ -25,8 +26,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // const [cartId, setCartId] = useState("");
-  // const user_id = useUserData();
+  const [cartId, setCartId] = useState("");
+  const user_id = useUserData();
 
   const logoutUser = async () => {
     logout(dispatch);
@@ -52,9 +53,8 @@ const Home = () => {
   };
 
   const fetchCourses = async () => {
-    // const cart_id = await AsyncStorage.getItem("randomString");
-    // setCartId(cart_id);
-
+    const cart_id = await AsyncStorage.getItem("randomString");
+    setCartId(cart_id);
     setLoading(true);
     try {
       const response = await apiInstance.get(`course/course-list/`);
@@ -65,7 +65,26 @@ const Home = () => {
       console.log(error);
     }
   };
+  const addToCart = async (courseId, userId, price, country, cartId) => {
+    alert("adding to cart");
 
+    try {
+      json = {
+        course_id: courseId,
+        user: userId,
+        price: price,
+        country: country,
+        cart_id: cartId,
+      };
+
+      await apiInstance.post(`cart/create/`, json).then((res) => {
+        alert("Added to cart");
+        setTimeout(() => {}, 3000);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     fetchCourses();
   }, []);
@@ -152,7 +171,7 @@ const Home = () => {
                         {t.title}
                       </Text>
                       <Text className="text-[15px] text-[#280e49] font-normal mt-1">
-                        {t.teacher?.full_name}
+                        {/* {t.teacher?.full_name} */} Tsigie Beyene
                       </Text>
                       <View className="flex-row items-center gap-1 mt-1">
                         <Text>{t?.average_rating || 0}/5</Text>
@@ -274,7 +293,7 @@ const Home = () => {
                                 t?.id,
                                 user_id,
                                 t?.price,
-                                "Nigeria",
+                                "Ethiopia",
                                 cartId
                               )
                             }
