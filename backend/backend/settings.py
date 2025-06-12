@@ -178,11 +178,11 @@ AUTH_USER_MODEL = 'userauths.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
-STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY", default="dummy_key_for_local_dev")
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+# STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY", default="dummy_key_for_local_dev")
 
-# STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
-STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default="dummy_stripe_key")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+# STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default="dummy_stripe_key")
 
 # PAYPAL_CLIENT_ID = env("PAYPAL_CLIENT_ID")
 PAYPAL_CLIENT_ID = env("PAYPAL_CLIENT_ID", default="dummy_paypal_client_id")
