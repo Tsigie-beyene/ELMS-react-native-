@@ -14,7 +14,6 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import BottomScreeenNavigation from "../partials/BottomScreeenNavigation";
 import StudentScreenHeader from "../partials/StudentScreenHeader";
-// import { Avatar1 } from "../../assets/Image";
 import useUserData from "../../src/plugin/useUserData";
 import apiInstance from "../../src/utils/axios";
 const Dashboard = () => {
