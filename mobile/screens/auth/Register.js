@@ -77,7 +77,7 @@ const Register = () => {
       vertical
       className="flex-1 mx-3"
     >
-      <Image source={Login3dImage} className="h-[250px] w-[250px] ml-14" />
+      <Image source={Login3dImage} className="h-[200px] w-[200px] ml-20 mt-5" />
       <Text className="text-[35px] font-extrabold mt-5">Register</Text>
       <Text className="text-[15px] font-normal mb-5">
         Create an account and start learning
