@@ -2,7 +2,7 @@ import { SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import store from "./src/store/store"
+import store from "./src/store/store";
 // Screens
 import Home from "./screens/base/Home";
 import CourseDetail from "./screens/base/CourseDetail";
@@ -20,6 +20,7 @@ import Note from "./screens/student/Note";
 import Settings from "./screens/student/Settings";
 import StudentCourseDetail from "./screens/student/StudentCourseDetail";
 import { Provider } from "react-redux";
+import Reviews from "./screens/student/Reviews";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,80 +29,85 @@ export default function App() {
     <SafeAreaView style={GlobalStyle.droidSafeArea}>
       <TailwindProvider>
         <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator>
-             {/* Auth Screen */}
-             <Stack.Screen
-              name="Register"
-              component={Register}
-              options={{ headerShown: false }}
-            />
-             <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{ headerShown: false }}
-            />
-            
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="CourseDetail"
-              component={CourseDetail}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Cart"
-              component={Cart}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Checkout"
-              component={Checkout}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Success"
-              component={Success}
-              options={{ headerShown: false }}
-            />
-           
-            <Stack.Screen
-              name="Dashboard"
-              component={Dashboard}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Message"
-              component={Message}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="MyCourses"
-              component={MyCourses}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Note"
-              component={Note}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Settings"
-              component={Settings}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="StudentCourseDetail"
-              component={StudentCourseDetail}
-              options={{ headerShown: false }}
-            />
-            
-          </Stack.Navigator>
-        </NavigationContainer>
-         </Provider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {/* Auth Screen */}
+              <Stack.Screen
+                name="Register"
+                component={Register}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="CourseDetail"
+                component={CourseDetail}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Cart"
+                component={Cart}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Checkout"
+                component={Checkout}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Success"
+                component={Success}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="Dashboard"
+                component={Dashboard}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Message"
+                component={Message}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="MyCourses"
+                component={MyCourses}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Note"
+                component={Note}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Reviews"
+                component={Reviews}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="StudentCourseDetail"
+                component={StudentCourseDetail}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
       </TailwindProvider>
     </SafeAreaView>
   );

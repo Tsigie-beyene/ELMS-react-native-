@@ -181,7 +181,7 @@ const Settings = () => {
 
 const styles = StyleSheet.create({
   image: {
-    width: 300,
+    width: 353,
     height: 100,
   },
 });
